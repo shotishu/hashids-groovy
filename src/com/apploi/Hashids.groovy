@@ -2,7 +2,7 @@ package com.apploi
 
 /**
  *
- * This is implementation of http://hashids.org v0.3.3 version.
+ * This is an implementation of http://hashids.org version 0.3.3.
  *
  * @author cmaron <cmaron@gmail.com>
  * @since 0.3.3
