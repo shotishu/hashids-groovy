@@ -28,3 +28,9 @@
 
 # "temporary" build files
 /target
+
+# Sigh...
+.DS_Store
+.idea
+hashids-groovy.iml
+/out
