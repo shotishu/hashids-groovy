@@ -8,19 +8,19 @@ package com.apploi
  * @since 0.3.3
  */
 class Hashids {
-    public static final String DEFAULT_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    public static final int MIN_ALPHABET_LENGTH = 16;
-    public static final String VERSION = "0.3.3";
+    public static final String DEFAULT_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    public static final int MIN_ALPHABET_LENGTH = 16
+    public static final String VERSION = "0.3.3"
 
-    private String salt = "";
-    private String alphabet = "";
-    private int alphabetLen = 0;
-    private String seps = "cfhistuCFHISTU";
-    private int minHashLength = 0;
-    private double sepDiv = 3.5;
-    private int guardDiv = 12;
-    private String guards;
-    private int guardsLen = 0;
+    private String salt = ""
+    private String alphabet = ""
+    private int alphabetLen = 0
+    private String seps = "cfhistuCFHISTU"
+    private int minHashLength = 0
+    private double sepDiv = 3.5
+    private int guardDiv = 12
+    private String guards
+    private int guardsLen = 0
 
     /**
      * Create an instance of Hashids with the given salt, no min hash length,
@@ -29,7 +29,7 @@ class Hashids {
      * @param salt the desired salt. Defaults to ""
      */
     public Hashids(salt = "") {
-        this(salt, 0);
+        this(salt, 0)
     }
 
     /**
@@ -40,7 +40,7 @@ class Hashids {
      * @param minHashLength the minimum hash length
      */
     public Hashids(String salt, int minHashLength) {
-        this(salt, minHashLength, DEFAULT_ALPHABET);
+        this(salt, minHashLength, DEFAULT_ALPHABET)
     }
 
     /**
@@ -70,7 +70,7 @@ class Hashids {
         this.alphabet = this.alphabet.replaceAll(/[${this.seps}]/, '')
 
         this.alphabetLen = this.alphabet.length()
-        this.seps = this.consistentShuffle(this.seps, this.salt);
+        this.seps = this.consistentShuffle(this.seps, this.salt)
 
         if ((this.seps == "") || ((this.alphabetLen / this.seps.length()) > this.sepDiv)) {
             int seps_len = (int) Math.ceil(this.alphabetLen / this.sepDiv)
@@ -103,7 +103,7 @@ class Hashids {
     }
 
     /**
-     * Encrypt string to numbers
+     * Encrypt numbers to string
      *
      * @param numbers the numbers to encrypt
      * @return the encrypted string
@@ -113,7 +113,7 @@ class Hashids {
             return ""
         }
 
-        return this.encode(numbers);
+        return this.encode(numbers)
     }
 
     /**
@@ -127,7 +127,7 @@ class Hashids {
             return []
         }
 
-        return this.decode(hash, this.alphabet);
+        return this.decode(hash, this.alphabet)
     }
 
     /**
@@ -143,7 +143,7 @@ class Hashids {
 
         int numberHashInt = 0
         numbers.length.times() {
-            numberHashInt += (numbers[it] % (it + 100));
+            numberHashInt += (numbers[it] % (it + 100))
         }
 
         String alphabet = this.alphabet
@@ -240,7 +240,7 @@ class Hashids {
             return alphabet
 
         int asc_val, j, v = 0, p = 0
-        char tmp;
+        char tmp
         for (i in (alphabet.length() - 1)..1) {
             v %= salt.length()
             asc_val = (int) salt[v]
@@ -271,7 +271,7 @@ class Hashids {
             input = (input / alphabetLen)
         }
 
-        return hash;
+        return hash
     }
 
     /**
@@ -285,11 +285,11 @@ class Hashids {
         int alphabetLen = alphabet.length()
 
         input.length().times {
-            pos = alphabet.indexOf(input[it]);
-            number += pos * Math.pow(alphabetLen, input.length() - it - 1);
+            pos = alphabet.indexOf(input[it])
+            number += pos * Math.pow(alphabetLen, input.length() - it - 1)
         }
 
-        return number;
+        return number
     }
 
 }
